@@ -936,7 +936,7 @@
           </svg>
         </div>
         <h3>Global Network</h3>
-        <p>Established trade routes and partnerships across the Middle East, Southeast Asia, and international markets.</p>
+        <p>Establishing trade routes and partnerships across the Middle East, Central Asia, Southeast Asia, and international markets.</p>
       </div>
     </div>
   </div>
@@ -949,7 +949,7 @@
   <div class="container">
     <div class="reveal">
       <h2>From Pakistan to the world</h2>
-      <p>Connecting premium halal meat from Pakistan's finest sources to tables across continents.</p>
+      <p>By road, sea, or air &mdash; connecting premium halal meat from Pakistan's finest sources to tables across continents.</p>
     </div>
     <div class="reach-map reveal">
       <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
@@ -1001,6 +1001,11 @@
         <circle class="dest-dot" cx="540" cy="270" r="4" style="animation-delay: 3.1s;"/>
         <text x="540" y="287" text-anchor="middle" class="dest-label">SE ASIA</text>
 
+        <!-- Arc: Pakistan → Central Asia (north, ~65°E 42°N) -->
+        <path class="arc-path" d="M 400 180 Q 370 110 380 80" style="animation-delay: 1.3s;"/>
+        <circle class="dest-dot" cx="380" cy="80" r="4" style="animation-delay: 3.0s;"/>
+        <text x="380" y="70" text-anchor="middle" class="dest-label">C. ASIA</text>
+
         <!-- Arc: Pakistan → Europe (northwest, ~15°E 50°N) -->
         <path class="arc-path" d="M 400 180 Q 320 70 260 105" style="animation-delay: 1.5s;"/>
         <circle class="dest-dot" cx="260" cy="105" r="4" style="animation-delay: 3.4s;"/>
@@ -1012,6 +1017,7 @@
           <path id="arc-ksa" d="M 400 180 Q 320 165 280 210"/>
           <path id="arc-china" d="M 400 180 Q 470 110 540 130"/>
           <path id="arc-sea" d="M 400 180 Q 480 240 540 270"/>
+          <path id="arc-casia" d="M 400 180 Q 370 110 380 80"/>
           <path id="arc-eu" d="M 400 180 Q 320 70 260 105"/>
         </defs>
 
@@ -1031,6 +1037,10 @@
         <circle r="2" fill="var(--clr-accent-light)" opacity="0">
           <animateMotion dur="3.5s" repeatCount="indefinite" begin="2.4s"><mpath href="#arc-sea"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.5s" repeatCount="indefinite" begin="2.4s"/>
+        </circle>
+        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+          <animateMotion dur="3s" repeatCount="indefinite" begin="2s"><mpath href="#arc-casia"/></animateMotion>
+          <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3s" repeatCount="indefinite" begin="2s"/>
         </circle>
         <circle r="2" fill="var(--clr-accent-light)" opacity="0">
           <animateMotion dur="4s" repeatCount="indefinite" begin="1.2s"><mpath href="#arc-eu"/></animateMotion>
