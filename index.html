@@ -50,6 +50,8 @@
   img, svg { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
 
+  .brand-name { color: var(--clr-accent); }
+
   /* ========================================
      LAYOUT UTILITIES
      ======================================== */
@@ -110,10 +112,6 @@
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--clr-navy);
-  }
-
-  .logo-text span {
     color: var(--clr-accent);
   }
 
@@ -727,7 +725,7 @@
           <path d="M 14 50 Q 32 48 50 50" stroke="#8b6e4e" stroke-width="0.8" opacity="0.3"/>
         </svg>
       </div>
-      <div class="logo-text">SAFI <span>MEAT</span></div>
+      <div class="logo-text">SAFI MEAT</div>
     </div>
     <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
@@ -1056,7 +1054,7 @@
       <div class="about-text reveal">
         <h2>Sourced with integrity,<br>delivered worldwide</h2>
         <p>
-          Safi Meat is a premium halal meat exporter based in Pakistan. We partner directly with trusted livestock suppliers to deliver beef and mutton that meet the highest standards of halal certification and food safety.
+          <span class="brand-name">Safi Meat</span> is a premium halal meat exporter based in Pakistan. We partner directly with trusted livestock suppliers to deliver beef and mutton that meet the highest standards of halal certification and food safety.
         </p>
         <p>
           From our procurement facilities in Pakistan to markets across the Middle East, Asia, and beyond. Every shipment carries our promise of quality, traceability, and care.
@@ -1146,7 +1144,7 @@
 <section class="pillars section-pad" id="pillars">
   <div class="container">
     <div class="pillars-header reveal">
-      <h2>Why Safi Meat</h2>
+      <h2>Why <span class="brand-name">Safi Meat</span></h2>
     </div>
     <div class="pillars-grid">
       <div class="pillar reveal">
@@ -1359,7 +1357,7 @@
      ======================================== -->
 <footer>
   <div class="container">
-    <p>&copy; 2026 <strong>Safi Meat</strong>. All rights reserved.</p>
+    <p>&copy; 2026 <strong class="brand-name">Safi Meat</strong>. All rights reserved.</p>
   </div>
 </footer>
 
