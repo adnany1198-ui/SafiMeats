@@ -1,0 +1,42 @@
+/* ========================================
+   DESIGN TOKENS — Safi Meats
+   Single source of truth for all design values.
+   Reference: design-system.md
+   ======================================== */
+
+:root {
+  /* ---- Colour Palette (Green + Gold) ---- */
+  --primary:        #1E3A2F;
+  --primary-light:  #2D5243;
+  --primary-dark:   #142A21;
+  --accent:         #B8924A;
+  --accent-light:   #C9A55E;
+  --accent-dark:    #9A7838;
+  --cream:          #F0EDE4;
+  --cream-dark:     #E4DFD3;
+  --white:          #FAFAF7;
+  --text:           #1E3A2F;
+  --text-light:     #4A6458;
+  --text-muted:     #7D8E85;
+  --border:         #D4CFC4;
+  --overlay:        rgba(30, 58, 47, 0.85);
+  --section-alt:    #F6F4EF;
+
+  /* ---- Typography ---- */
+  --font-display:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'DM Sans', -apple-system, sans-serif;
+  --font-arabic:    'Noto Naskh Arabic', serif;
+  --font-mono:      'JetBrains Mono', monospace;
+
+  /* ---- Spacing ---- */
+  --space-xs:   0.5rem;   /*  8px */
+  --space-sm:   1rem;     /* 16px */
+  --space-md:   2rem;     /* 32px */
+  --space-lg:   4rem;     /* 64px */
+  --space-xl:   7rem;     /* 112px — section padding */
+  --space-2xl:  10rem;    /* 160px — hero padding-top */
+
+  /* ---- Layout ---- */
+  --max-w:        1200px;
+  --max-w-narrow: 800px;
+}
