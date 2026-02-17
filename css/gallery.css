@@ -1,0 +1,132 @@
+/* ========================================
+   GALLERY PAGE STYLES
+   ======================================== */
+
+/* ---- Gallery filters ---- */
+
+.gallery-section {
+  background: var(--white);
+}
+
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.gallery-filter {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-filter:hover,
+.gallery-filter.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ---- Gallery grid ---- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Tall items span 2 rows */
+.gallery-item--tall {
+  grid-row: span 2;
+}
+
+/* Wide items span 2 columns */
+.gallery-item--wide {
+  grid-column: span 2;
+}
+
+.gallery-item .media-placeholder {
+  height: 100%;
+  min-height: 240px;
+  border-radius: 6px;
+  border: none;
+}
+
+.gallery-item--tall .media-placeholder {
+  min-height: 100%;
+  aspect-ratio: auto;
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(30, 58, 47, 0.85));
+  color: var(--cream);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+}
+
+.gallery-caption h3 {
+  color: var(--cream);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.gallery-caption p {
+  font-size: 0.8rem;
+  color: rgba(240, 237, 228, 0.7);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .gallery-item--wide {
+    grid-column: span 1;
+  }
+
+  .gallery-item--tall {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

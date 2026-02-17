@@ -242,6 +242,196 @@ footer {
   font-weight: 500;
 }
 
+/* ---- NAV ACTIVE STATE ---- */
+
+nav a.active {
+  color: var(--accent);
+}
+
+/* ---- PAGE HEADER (inner pages) ---- */
+
+.page-header {
+  background: var(--primary);
+  color: var(--cream);
+  padding: var(--space-2xl) 0 var(--space-xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 80%, rgba(184, 146, 74, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-header .label {
+  color: var(--accent);
+  position: relative;
+}
+
+.page-header h1 {
+  color: var(--cream);
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.page-header .page-subtitle {
+  font-size: 1rem;
+  color: rgba(240, 237, 228, 0.6);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+  position: relative;
+}
+
+/* ---- ENQUIRY CTA SECTION (shared dark section) ---- */
+
+.cta-section {
+  background: var(--primary);
+  color: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(184, 146, 74, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cta-section .label {
+  color: var(--accent);
+  position: relative;
+}
+
+.cta-section h2 {
+  color: var(--cream);
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  color: rgba(240, 237, 228, 0.65);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+}
+
+.cta-section .btn {
+  position: relative;
+}
+
+/* ---- STATS ROW ---- */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.stat-item {
+  padding: var(--space-md) var(--space-sm);
+}
+
+.stat-item .stat-number {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.stat-item .stat-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Dark background variant */
+.stats-row--dark .stat-item .stat-number {
+  color: var(--accent-light);
+}
+
+.stats-row--dark .stat-item .stat-label {
+  color: rgba(240, 237, 228, 0.5);
+}
+
+/* ---- TWO-COLUMN LAYOUT ---- */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.two-col--reverse .two-col-media {
+  order: -1;
+}
+
+/* ---- MEDIA PLACEHOLDER ---- */
+
+.media-placeholder {
+  background: var(--cream);
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.media-placeholder svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.4;
+}
+
+/* Dark variant */
+.media-placeholder--dark {
+  background: rgba(240, 237, 228, 0.06);
+  border-color: rgba(240, 237, 228, 0.08);
+}
+
+/* ---- RESPONSIVE: SHARED LAYOUTS ---- */
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 8rem 0 var(--space-lg);
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .two-col--reverse .two-col-media {
+    order: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---- RESPONSIVE: NAV & FOOTER ---- */
 
 @media (max-width: 768px) {
