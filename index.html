@@ -3,695 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safi Meat | Premium Halal Meat Exports</title>
-<style>
-  /* ========================================
-     DESIGN TOKENS
-     ======================================== */
-  :root {
-    --clr-bg:       #faf9f7;
-    --clr-surface:  #ffffff;
-    --clr-ink:      #1a1a1a;
-    --clr-ink-soft: #5c5c5c;
-    --clr-accent:   #8b6e4e;
-    --clr-accent-light: #c9a97a;
-    --clr-line:     #e0ddd8;
-    --clr-navy:     #1e2a3a;
-    --clr-cream:    #f5f0e8;
-
-    --ff-sans:  'Segoe UI', system-ui, -apple-system, sans-serif;
-    --ff-serif: Georgia, 'Times New Roman', serif;
-
-    --fs-display: clamp(2.5rem, 6vw, 5rem);
-    --fs-h2:      clamp(1.5rem, 3vw, 2.25rem);
-    --fs-body:    clamp(0.95rem, 1.2vw, 1.1rem);
-    --fs-small:   0.85rem;
-
-    --space-section: clamp(5rem, 10vw, 9rem);
-    --max-w: 1200px;
-  }
-
-  /* ========================================
-     RESET & BASE
-     ======================================== */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--ff-sans);
-    background: var(--clr-bg);
-    color: var(--clr-ink);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  img, svg { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-
-  .brand-name { color: var(--clr-accent); }
-
-  /* ========================================
-     LAYOUT UTILITIES
-     ======================================== */
-  .container {
-    width: 90%;
-    max-width: var(--max-w);
-    margin: 0 auto;
-  }
-
-  .section-pad {
-    padding: var(--space-section) 0;
-  }
-
-  /* ========================================
-     HEADER / NAV
-     ======================================== */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(250, 249, 247, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--clr-line);
-    transition: box-shadow 0.3s;
-  }
-
-  header.scrolled {
-    box-shadow: 0 1px 20px rgba(0,0,0,0.06);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .logo-mark {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-  }
-
-  .logo-mark svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .logo-text {
-    font-family: var(--ff-serif);
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--clr-accent);
-  }
-
-  nav a {
-    font-size: var(--fs-small);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--clr-ink-soft);
-    transition: color 0.25s;
-  }
-
-  nav a:hover { color: var(--clr-accent); }
-
-  .nav-links { display: flex; align-items: center; gap: 2rem; }
-
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .menu-toggle svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--clr-ink);
-  }
-
-  /* ========================================
-     HERO
-     ======================================== */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: var(--clr-navy);
-    color: #ffffff;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    opacity: 0.35;
-  }
-
-  /* Farm landscape background */
-  .hero-farm {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-  }
-
-  .hero-farm svg {
-    width: 100%;
-    max-width: 1400px;
-    height: auto;
-    opacity: 0.06;
-  }
-
-  /* Hero logo mark */
-  .hero-logo {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 0.75rem;
-    opacity: 0;
-    animation: fade-up 1s ease 0.1s forwards;
-  }
-
-  .hero-logo svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Animated route-map SVG */
-  .route-map {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateY(0);
-  }
-
-  /* Hub dots */
-  .hub {
-    fill: var(--clr-accent-light);
-    opacity: 0.9;
-  }
-
-  .hub-glow {
-    fill: var(--clr-accent-light);
-    opacity: 0;
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { opacity: 0; r: 6; }
-    50% { opacity: 0.35; r: 18; }
-  }
-
-  /* Route lines */
-  .route-line {
-    fill: none;
-    stroke: var(--clr-accent-light);
-    stroke-width: 1;
-    opacity: 0.25;
-    stroke-dasharray: 6 4;
-  }
-
-  /* Animated particles along routes */
-  .route-particle {
-    fill: var(--clr-accent-light);
-    opacity: 0;
-    r: 2.5;
-  }
-
-  .route-particle.active {
-    animation: particle-move 4s ease-in-out infinite;
-  }
-
-  @keyframes particle-move {
-    0%   { opacity: 0; offset-distance: 0%; }
-    10%  { opacity: 0.9; }
-    85%  { opacity: 0.9; }
-    100% { opacity: 0; offset-distance: 100%; }
-  }
-
-  /* Floating transport icons */
-  .transport-icon {
-    opacity: 0.15;
-    animation: float-drift 20s linear infinite;
-  }
-
-  @keyframes float-drift {
-    0%   { transform: translateX(-60px) translateY(10px); opacity: 0; }
-    10%  { opacity: 0.15; }
-    90%  { opacity: 0.15; }
-    100% { transform: translateX(60px) translateY(-10px); opacity: 0; }
-  }
-
-  /* Background grid */
-  .grid-line {
-    stroke: rgba(255,255,255,0.04);
-    stroke-width: 0.5;
-  }
-
-  /* Hero text */
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 2rem;
-    max-width: 800px;
-  }
-
-  .hero h1 {
-    font-family: var(--ff-serif);
-    font-size: var(--fs-display);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: 0.06em;
-    font-variant-ligatures: no-common-ligatures;
-    -webkit-font-feature-settings: "liga" 0;
-    font-feature-settings: "liga" 0;
-    margin-bottom: 0.75rem;
-    opacity: 0;
-    animation: fade-up 1s ease 0.3s forwards;
-  }
-
-  .hero h1 strong {
-    font-weight: 700;
-    color: var(--clr-accent-light);
-  }
-
-  .hero-tagline {
-    font-size: var(--fs-body);
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-top: 0.5rem;
-    opacity: 0;
-    animation: fade-up 1s ease 0.6s forwards;
-  }
-
-  .hero-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--clr-accent-light);
-    margin: 2rem auto;
-    opacity: 0;
-    animation: fade-up 1s ease 0.5s forwards;
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    opacity: 0;
-    animation: fade-up 1s ease 1s forwards;
-  }
-
-  .hero-scroll svg {
-    width: 20px;
-    height: 30px;
-    animation: bob 2s ease-in-out infinite;
-  }
-
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
-  }
-
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ========================================
-     ABOUT
-     ======================================== */
-  .about {
-    background: var(--clr-surface);
-    border-bottom: 1px solid var(--clr-line);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .about-text h2 {
-    font-family: var(--ff-serif);
-    font-size: var(--fs-h2);
-    font-weight: 400;
-    margin-bottom: 1.25rem;
-    color: var(--clr-navy);
-  }
-
-  .about-text p {
-    font-size: var(--fs-body);
-    color: var(--clr-ink-soft);
-    max-width: 480px;
-    margin-bottom: 1rem;
-  }
-
-  .about-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .cattle-illustration {
-    width: 100%;
-    max-width: 420px;
-    opacity: 0.85;
-  }
-
-  .cattle-illustration path,
-  .cattle-illustration line,
-  .cattle-illustration polyline {
-    stroke: var(--clr-accent);
-    stroke-width: 1.2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  /* ========================================
-     PILLARS (3-column features)
-     ======================================== */
-  .pillars {
-    background: var(--clr-bg);
-  }
-
-  .pillars-header {
-    text-align: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .pillars-header h2 {
-    font-family: var(--ff-serif);
-    font-size: var(--fs-h2);
-    font-weight: 400;
-    color: var(--clr-navy);
-  }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
-
-  .pillar {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    border: 1px solid var(--clr-line);
-    border-radius: 4px;
-    background: var(--clr-surface);
-    transition: box-shadow 0.3s, transform 0.3s;
-  }
-
-  .pillar:hover {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
-  }
-
-  .pillar-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 1.25rem;
-  }
-
-  .pillar-icon svg {
-    width: 100%;
-    height: 100%;
-    stroke: var(--clr-accent);
-    stroke-width: 1.5;
-    fill: none;
-  }
-
-  .pillar h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.6rem;
-    color: var(--clr-navy);
-  }
-
-  .pillar p {
-    font-size: var(--fs-small);
-    color: var(--clr-ink-soft);
-    line-height: 1.65;
-  }
-
-  /* ========================================
-     GLOBAL REACH SECTION
-     ======================================== */
-  .reach {
-    background: var(--clr-navy);
-    color: #fff;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .reach h2 {
-    font-family: var(--ff-serif);
-    font-size: var(--fs-h2);
-    font-weight: 400;
-    margin-bottom: 1rem;
-  }
-
-  .reach p {
-    color: rgba(255,255,255,0.55);
-    font-size: var(--fs-body);
-    max-width: 560px;
-    margin: 0 auto 3rem;
-  }
-
-  .reach-map {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .reach-map svg {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Animated arc paths */
-  .arc-path {
-    fill: none;
-    stroke: var(--clr-accent-light);
-    stroke-width: 1.5;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw-arc 3s ease forwards;
-    opacity: 0.5;
-  }
-
-  .arc-path:nth-child(2) { animation-delay: 0.5s; }
-  .arc-path:nth-child(3) { animation-delay: 1s; }
-  .arc-path:nth-child(4) { animation-delay: 1.5s; }
-  .arc-path:nth-child(5) { animation-delay: 2s; }
-
-  @keyframes draw-arc {
-    to { stroke-dashoffset: 0; }
-  }
-
-  .dest-dot {
-    fill: var(--clr-accent-light);
-    opacity: 0;
-    animation: dot-appear 0.5s ease forwards;
-  }
-
-  .dest-dot:nth-child(7)  { animation-delay: 2s; }
-  .dest-dot:nth-child(8)  { animation-delay: 2.3s; }
-  .dest-dot:nth-child(9)  { animation-delay: 2.5s; }
-  .dest-dot:nth-child(10) { animation-delay: 2.7s; }
-  .dest-dot:nth-child(11) { animation-delay: 2.9s; }
-
-  @keyframes dot-appear {
-    to { opacity: 0.9; }
-  }
-
-  .origin-dot {
-    fill: #fff;
-  }
-
-  .dest-label {
-    fill: rgba(255,255,255,0.5);
-    font-size: 10px;
-    font-family: var(--ff-sans);
-    letter-spacing: 0.08em;
-  }
-
-  /* ========================================
-     CONTACT
-     ======================================== */
-  .contact {
-    background: var(--clr-surface);
-    border-top: 1px solid var(--clr-line);
-  }
-
-  .contact-inner {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .contact h2 {
-    font-family: var(--ff-serif);
-    font-size: var(--fs-h2);
-    font-weight: 400;
-    color: var(--clr-navy);
-    margin-bottom: 0.75rem;
-  }
-
-  .contact p {
-    color: var(--clr-ink-soft);
-    font-size: var(--fs-body);
-    margin-bottom: 2.5rem;
-  }
-
-  /*
-   * ==========================================
-   *  CONTACT DETAILS — EASY TO UPDATE
-   *  Change the email, phone, and address
-   *  in the HTML below this style block.
-   * ==========================================
-   */
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .contact-item {
-    padding: 1.5rem;
-  }
-
-  .contact-item-icon {
-    width: 32px;
-    height: 32px;
-    margin: 0 auto 0.75rem;
-  }
-
-  .contact-item-icon svg {
-    width: 100%;
-    height: 100%;
-    stroke: var(--clr-accent);
-    stroke-width: 1.5;
-    fill: none;
-  }
-
-  .contact-item h4 {
-    font-size: var(--fs-small);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--clr-ink-soft);
-    margin-bottom: 0.35rem;
-    font-weight: 500;
-  }
-
-  .contact-item a,
-  .contact-item span {
-    font-size: var(--fs-body);
-    color: var(--clr-navy);
-    font-weight: 500;
-    transition: color 0.25s;
-  }
-
-  .contact-item a:hover {
-    color: var(--clr-accent);
-  }
-
-  /* ========================================
-     FOOTER
-     ======================================== */
-  footer {
-    background: var(--clr-navy);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 2rem 0;
-    font-size: var(--fs-small);
-  }
-
-  footer strong {
-    color: rgba(255,255,255,0.7);
-    font-weight: 500;
-  }
-
-  /* ========================================
-     ANIMATIONS — SCROLL REVEAL
-     ======================================== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ========================================
-     RESPONSIVE
-     ======================================== */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .nav-links.open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 64px; left: 0; right: 0;
-      background: rgba(250,249,247,0.97);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--clr-line);
-    }
-    .nav-links.open a {
-      margin: 0;
-      padding: 0.75rem 2rem;
-    }
-    .menu-toggle { display: block; }
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-    .about-visual { order: -1; }
-    .cattle-illustration { max-width: 280px; }
-    .pillars-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 2.2rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<title>Safi Meats | Premium Halal Meat Exports</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 
@@ -704,42 +27,44 @@
       <div class="logo-mark">
         <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <!-- Shield outline -->
-          <path d="M 32 4 L 56 14 L 56 34 Q 56 52 32 60 Q 8 52 8 34 L 8 14 Z" stroke="#1e2a3a" stroke-width="1.8" fill="none"/>
+          <path d="M 32 4 L 56 14 L 56 34 Q 56 52 32 60 Q 8 52 8 34 L 8 14 Z" stroke="#F0EDE4" stroke-width="1.8" fill="none"/>
           <!-- Bull head (center) -->
-          <path d="M 24 30 Q 22 24 18 20" stroke="#8b6e4e" stroke-width="1.5"/>
-          <path d="M 40 30 Q 42 24 46 20" stroke="#8b6e4e" stroke-width="1.5"/>
-          <path d="M 24 30 Q 26 34 28 36 Q 30 38 32 38 Q 34 38 36 36 Q 38 34 40 30" stroke="#8b6e4e" stroke-width="1.5"/>
-          <path d="M 24 30 Q 28 28 32 27 Q 36 28 40 30" stroke="#8b6e4e" stroke-width="1.2"/>
-          <circle cx="28" cy="30" r="1" fill="#8b6e4e"/>
-          <circle cx="36" cy="30" r="1" fill="#8b6e4e"/>
-          <path d="M 30 35 Q 32 36 34 35" stroke="#8b6e4e" stroke-width="1"/>
+          <path d="M 24 30 Q 22 24 18 20" stroke="#B8924A" stroke-width="1.5"/>
+          <path d="M 40 30 Q 42 24 46 20" stroke="#B8924A" stroke-width="1.5"/>
+          <path d="M 24 30 Q 26 34 28 36 Q 30 38 32 38 Q 34 38 36 36 Q 38 34 40 30" stroke="#B8924A" stroke-width="1.5"/>
+          <path d="M 24 30 Q 28 28 32 27 Q 36 28 40 30" stroke="#B8924A" stroke-width="1.2"/>
+          <circle cx="28" cy="30" r="1" fill="#B8924A"/>
+          <circle cx="36" cy="30" r="1" fill="#B8924A"/>
+          <path d="M 30 35 Q 32 36 34 35" stroke="#B8924A" stroke-width="1"/>
           <!-- Smaller bull left -->
-          <path d="M 16 44 Q 15 42 13 40" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
-          <path d="M 22 44 Q 23 42 25 40" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
-          <path d="M 16 44 Q 19 46 22 44" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
+          <path d="M 16 44 Q 15 42 13 40" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
+          <path d="M 22 44 Q 23 42 25 40" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
+          <path d="M 16 44 Q 19 46 22 44" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
           <!-- Smaller bull right -->
-          <path d="M 42 44 Q 41 42 39 40" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
-          <path d="M 48 44 Q 49 42 51 40" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
-          <path d="M 42 44 Q 45 46 48 44" stroke="#8b6e4e" stroke-width="1" opacity="0.5"/>
+          <path d="M 42 44 Q 41 42 39 40" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
+          <path d="M 48 44 Q 49 42 51 40" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
+          <path d="M 42 44 Q 45 46 48 44" stroke="#B8924A" stroke-width="1" opacity="0.5"/>
           <!-- Ground line -->
-          <path d="M 14 50 Q 32 48 50 50" stroke="#8b6e4e" stroke-width="0.8" opacity="0.3"/>
+          <path d="M 14 50 Q 32 48 50 50" stroke="#B8924A" stroke-width="0.8" opacity="0.3"/>
         </svg>
       </div>
-      <div class="logo-text">SAFI MEAT</div>
+      <div class="logo-text">SAFI MEATS</div>
     </div>
-    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <button class="menu-toggle" aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
         <line x1="3" y1="6" x2="21" y2="6"/>
         <line x1="3" y1="12" x2="21" y2="12"/>
         <line x1="3" y1="18" x2="21" y2="18"/>
       </svg>
     </button>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#pillars">Why Us</a>
-      <a href="#reach">Reach</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#pillars">Why Us</a>
+        <a href="#reach">Reach</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -765,21 +90,13 @@
       </g>
 
       <!-- Route paths from Pakistan (origin ~720,320) outward -->
-      <!-- To UAE/Dubai -->
       <path class="route-line" d="M 720 320 Q 640 280 560 310" id="route1"/>
-      <!-- To Saudi Arabia -->
       <path class="route-line" d="M 720 320 Q 600 340 520 360" id="route2"/>
-      <!-- To China / East Asia -->
       <path class="route-line" d="M 720 320 Q 840 260 960 240" id="route3"/>
-      <!-- To Southeast Asia -->
       <path class="route-line" d="M 720 320 Q 820 380 920 420" id="route4"/>
-      <!-- To Central Asia -->
       <path class="route-line" d="M 720 320 Q 680 220 640 170" id="route5"/>
-      <!-- To Africa -->
       <path class="route-line" d="M 720 320 Q 560 420 440 480" id="route6"/>
-      <!-- To Europe -->
       <path class="route-line" d="M 720 320 Q 540 200 380 160" id="route7"/>
-      <!-- To North America (far) -->
       <path class="route-line" d="M 720 320 Q 400 120 180 200" id="route8"/>
 
       <!-- Animated particles along each route -->
@@ -799,39 +116,31 @@
       <circle class="route-particle active" r="2" style="offset-path: path('M 720 320 Q 540 200 380 160'); animation-delay: 3.2s;"/>
 
       <!-- Destination hubs -->
-      <!-- UAE -->
       <circle class="hub-glow" cx="560" cy="310" r="6" style="animation-delay: 0.2s;"/>
       <circle class="hub" cx="560" cy="310" r="3.5"/>
-      <!-- Saudi -->
       <circle class="hub-glow" cx="520" cy="360" r="6" style="animation-delay: 0.8s;"/>
       <circle class="hub" cx="520" cy="360" r="3.5"/>
-      <!-- East Asia -->
       <circle class="hub-glow" cx="960" cy="240" r="6" style="animation-delay: 1.4s;"/>
       <circle class="hub" cx="960" cy="240" r="3.5"/>
-      <!-- SE Asia -->
       <circle class="hub-glow" cx="920" cy="420" r="6" style="animation-delay: 0.5s;"/>
       <circle class="hub" cx="920" cy="420" r="3.5"/>
-      <!-- Central Asia -->
       <circle class="hub-glow" cx="640" cy="170" r="6" style="animation-delay: 1.0s;"/>
       <circle class="hub" cx="640" cy="170" r="3.5"/>
-      <!-- Africa -->
       <circle class="hub-glow" cx="440" cy="480" r="6" style="animation-delay: 1.6s;"/>
       <circle class="hub" cx="440" cy="480" r="3.5"/>
-      <!-- Europe -->
       <circle class="hub-glow" cx="380" cy="160" r="6" style="animation-delay: 2.0s;"/>
       <circle class="hub" cx="380" cy="160" r="3.5"/>
-      <!-- North America -->
       <circle class="hub-glow" cx="180" cy="200" r="6" style="animation-delay: 2.4s;"/>
       <circle class="hub" cx="180" cy="200" r="3.5"/>
 
-      <!-- Origin hub — Pakistan (larger, brighter) -->
+      <!-- Origin hub — Pakistan -->
       <circle cx="720" cy="320" r="20" fill="rgba(201,169,122,0.08)">
         <animate attributeName="r" values="16;24;16" dur="4s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values="0.15;0.05;0.15" dur="4s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="720" cy="320" r="5" fill="#fff" opacity="0.9"/>
+      <circle cx="720" cy="320" r="5" fill="#F0EDE4" opacity="0.9"/>
 
-      <!-- Minimalist ship icon (floating) -->
+      <!-- Minimalist ship icon -->
       <g class="transport-icon" transform="translate(480, 440)" style="animation-delay: 0s;">
         <path d="M 0 8 L 4 0 L 28 0 L 32 8 Z" stroke="rgba(201,169,122,0.8)" stroke-width="1" fill="none"/>
         <line x1="14" y1="0" x2="14" y2="-12" stroke="rgba(201,169,122,0.8)" stroke-width="1"/>
@@ -839,7 +148,7 @@
         <path d="M -4 10 Q 16 14 36 10" stroke="rgba(201,169,122,0.5)" stroke-width="0.8" fill="none"/>
       </g>
 
-      <!-- Minimalist plane icon (floating) -->
+      <!-- Minimalist plane icon -->
       <g class="transport-icon" transform="translate(340, 220)" style="animation-delay: 5s;">
         <path d="M 0 6 L 12 0 L 24 6 M 8 4 L 12 -4 L 16 4 M 10 6 L 12 10 L 14 6" stroke="rgba(201,169,122,0.8)" stroke-width="0.8" fill="none"/>
       </g>
@@ -860,8 +169,7 @@
 
   <!-- Farm landscape line drawing background -->
   <div class="hero-farm">
-    <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(255,255,255,0.8)" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Radial fade mask -->
+    <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgba(240,237,228,0.8)" stroke-linecap="round" stroke-linejoin="round">
       <defs>
         <radialGradient id="farm-fade" cx="50%" cy="45%" r="55%">
           <stop offset="0%" stop-color="white" stop-opacity="1"/>
@@ -874,28 +182,22 @@
       </defs>
 
       <g mask="url(#farm-mask)">
-        <!-- Distant hills / horizon -->
+        <!-- Distant hills -->
         <path d="M 0 320 Q 100 290 200 300 Q 350 280 450 295 Q 550 270 650 285 Q 780 265 900 280 Q 1000 270 1100 285 L 1200 290" stroke-width="0.8" opacity="0.4"/>
         <path d="M 0 340 Q 150 310 300 320 Q 450 300 600 315 Q 750 295 900 310 Q 1050 300 1200 310" stroke-width="0.6" opacity="0.25"/>
 
-        <!-- Barn / farmhouse (left side, subtle) -->
+        <!-- Barn / farmhouse -->
         <g stroke-width="1" opacity="0.5">
-          <!-- Barn body -->
           <rect x="120" y="310" width="80" height="55" rx="1"/>
-          <!-- Barn roof -->
           <path d="M 115 310 L 160 280 L 205 310"/>
-          <!-- Barn door -->
           <path d="M 148 365 L 148 340 Q 160 335 172 340 L 172 365"/>
-          <!-- Silo -->
           <rect x="210" y="300" width="22" height="65"/>
           <path d="M 210 300 Q 221 290 232 300"/>
-          <!-- Barn window -->
           <rect x="130" y="325" width="10" height="8" rx="1" opacity="0.6"/>
         </g>
 
-        <!-- Fence line running across (left to right) -->
+        <!-- Fence line (left) -->
         <g stroke-width="0.7" opacity="0.35">
-          <!-- Posts -->
           <line x1="60" y1="370" x2="60" y2="385"/>
           <line x1="110" y1="368" x2="110" y2="383"/>
           <line x1="160" y1="367" x2="160" y2="382"/>
@@ -903,12 +205,11 @@
           <line x1="320" y1="364" x2="320" y2="379"/>
           <line x1="380" y1="363" x2="380" y2="378"/>
           <line x1="440" y1="362" x2="440" y2="377"/>
-          <!-- Rails -->
           <path d="M 40 373 Q 250 365 460 365"/>
           <path d="M 40 379 Q 250 371 460 371"/>
         </g>
 
-        <!-- Right side fence -->
+        <!-- Fence line (right) -->
         <g stroke-width="0.7" opacity="0.35">
           <line x1="760" y1="363" x2="760" y2="378"/>
           <line x1="820" y1="364" x2="820" y2="379"/>
@@ -921,8 +222,7 @@
           <path d="M 740 372 Q 940 375 1140 378"/>
         </g>
 
-        <!-- Cattle silhouettes (grazing, left field) -->
-        <!-- Bull 1 (larger, foreground left) -->
+        <!-- Cattle silhouettes -->
         <g stroke-width="0.9" opacity="0.45">
           <path d="M 300 385 Q 310 378 325 376 Q 340 375 352 378 Q 358 381 360 386"/>
           <path d="M 300 385 L 302 395"/>
@@ -934,7 +234,6 @@
           <path d="M 294 376 Q 295 372 297 370"/>
         </g>
 
-        <!-- Bull 2 (mid distance) -->
         <g stroke-width="0.7" opacity="0.3">
           <path d="M 420 375 Q 428 370 438 369 Q 448 369 455 372 Q 458 374 459 377"/>
           <path d="M 420 377 L 421 383"/>
@@ -944,7 +243,6 @@
           <path d="M 420 375 Q 417 373 415 370"/>
         </g>
 
-        <!-- Bull 3 (right field, grazing) -->
         <g stroke-width="0.9" opacity="0.45">
           <path d="M 830 380 Q 840 373 855 371 Q 870 370 882 373 Q 888 376 890 381"/>
           <path d="M 830 381 L 832 391"/>
@@ -956,7 +254,6 @@
           <path d="M 825 371 Q 826 367 828 365"/>
         </g>
 
-        <!-- Bull 4 (distant right) -->
         <g stroke-width="0.6" opacity="0.25">
           <path d="M 970 370 Q 976 366 984 365 Q 992 365 997 367 Q 999 369 1000 372"/>
           <path d="M 970 372 L 971 377"/>
@@ -964,7 +261,6 @@
           <path d="M 970 370 Q 968 368 966 366"/>
         </g>
 
-        <!-- Bull 5 (distant left) -->
         <g stroke-width="0.6" opacity="0.25">
           <path d="M 500 368 Q 506 364 514 363 Q 522 363 527 365 Q 529 367 530 370"/>
           <path d="M 500 370 L 501 375"/>
@@ -972,7 +268,7 @@
           <path d="M 500 368 Q 498 366 496 364"/>
         </g>
 
-        <!-- Ground texture lines -->
+        <!-- Ground texture -->
         <g stroke-width="0.4" opacity="0.15">
           <path d="M 0 400 Q 200 395 400 398 Q 600 394 800 397 Q 1000 393 1200 396"/>
           <path d="M 0 430 Q 300 422 600 425 Q 900 420 1200 424"/>
@@ -981,26 +277,22 @@
           <path d="M 700 405 Q 800 402 900 404" opacity="0.5"/>
         </g>
 
-        <!-- Scattered trees (distant, minimal) -->
+        <!-- Trees -->
         <g stroke-width="0.7" opacity="0.3">
-          <!-- Tree 1 -->
           <line x1="560" y1="310" x2="560" y2="295"/>
           <path d="M 550 298 Q 560 285 570 298"/>
-          <!-- Tree 2 -->
           <line x1="650" y1="305" x2="650" y2="290"/>
           <path d="M 642 293 Q 650 280 658 293"/>
-          <!-- Tree cluster right -->
           <line x1="1040" y1="300" x2="1040" y2="285"/>
           <path d="M 1032 288 Q 1040 275 1048 288"/>
           <line x1="1055" y1="303" x2="1055" y2="290"/>
           <path d="M 1048 293 Q 1055 282 1062 293"/>
         </g>
 
-        <!-- Windmill (right side, elegant) -->
+        <!-- Windmill -->
         <g stroke-width="0.8" opacity="0.4">
           <line x1="700" y1="360" x2="700" y2="300"/>
           <path d="M 700 300 L 690 280 L 700 300 L 710 280 L 700 300 L 680 310 L 700 300 L 720 310"/>
-          <!-- Base braces -->
           <line x1="695" y1="360" x2="705" y2="360"/>
           <line x1="697" y1="340" x2="703" y2="340"/>
         </g>
@@ -1012,33 +304,34 @@
     <!-- Hero logo mark -->
     <div class="hero-logo">
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Shield -->
-        <path d="M 32 4 L 56 14 L 56 34 Q 56 52 32 60 Q 8 52 8 34 L 8 14 Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" fill="none"/>
-        <!-- Bull head (center) -->
-        <path d="M 24 30 Q 22 24 18 20" stroke="var(--clr-accent-light)" stroke-width="1.3"/>
-        <path d="M 40 30 Q 42 24 46 20" stroke="var(--clr-accent-light)" stroke-width="1.3"/>
-        <path d="M 24 30 Q 26 34 28 36 Q 30 38 32 38 Q 34 38 36 36 Q 38 34 40 30" stroke="var(--clr-accent-light)" stroke-width="1.3"/>
-        <path d="M 24 30 Q 28 28 32 27 Q 36 28 40 30" stroke="var(--clr-accent-light)" stroke-width="1"/>
-        <circle cx="28" cy="30" r="1" fill="var(--clr-accent-light)"/>
-        <circle cx="36" cy="30" r="1" fill="var(--clr-accent-light)"/>
-        <path d="M 30 35 Q 32 36 34 35" stroke="var(--clr-accent-light)" stroke-width="0.8"/>
-        <!-- Smaller bulls flanking -->
-        <path d="M 16 44 Q 15 42 13 40" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <path d="M 22 44 Q 23 42 25 40" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <path d="M 16 44 Q 19 46 22 44" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <path d="M 42 44 Q 41 42 39 40" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <path d="M 48 44 Q 49 42 51 40" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <path d="M 42 44 Q 45 46 48 44" stroke="var(--clr-accent-light)" stroke-width="0.8" opacity="0.5"/>
-        <!-- Ground -->
-        <path d="M 14 50 Q 32 48 50 50" stroke="var(--clr-accent-light)" stroke-width="0.6" opacity="0.3"/>
+        <path d="M 32 4 L 56 14 L 56 34 Q 56 52 32 60 Q 8 52 8 34 L 8 14 Z" stroke="rgba(240,237,228,0.7)" stroke-width="1.2" fill="none"/>
+        <path d="M 24 30 Q 22 24 18 20" stroke="#C9A55E" stroke-width="1.3"/>
+        <path d="M 40 30 Q 42 24 46 20" stroke="#C9A55E" stroke-width="1.3"/>
+        <path d="M 24 30 Q 26 34 28 36 Q 30 38 32 38 Q 34 38 36 36 Q 38 34 40 30" stroke="#C9A55E" stroke-width="1.3"/>
+        <path d="M 24 30 Q 28 28 32 27 Q 36 28 40 30" stroke="#C9A55E" stroke-width="1"/>
+        <circle cx="28" cy="30" r="1" fill="#C9A55E"/>
+        <circle cx="36" cy="30" r="1" fill="#C9A55E"/>
+        <path d="M 30 35 Q 32 36 34 35" stroke="#C9A55E" stroke-width="0.8"/>
+        <path d="M 16 44 Q 15 42 13 40" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 22 44 Q 23 42 25 40" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 16 44 Q 19 46 22 44" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 42 44 Q 41 42 39 40" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 48 44 Q 49 42 51 40" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 42 44 Q 45 46 48 44" stroke="#C9A55E" stroke-width="0.8" opacity="0.5"/>
+        <path d="M 14 50 Q 32 48 50 50" stroke="#C9A55E" stroke-width="0.6" opacity="0.3"/>
       </svg>
     </div>
-    <h1><strong>Safi Meat</strong></h1>
+    <h1><strong>Safi Meats</strong></h1>
+    <div class="hero-divider"></div>
     <p class="hero-tagline">Premium quality, halal certified, procured in Pakistan</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Enquire Now</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
   </div>
 
   <div class="hero-scroll">
-    <svg viewBox="0 0 20 30" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round">
+    <svg viewBox="0 0 20 30" fill="none" stroke="rgba(240,237,228,0.4)" stroke-width="1.5" stroke-linecap="round">
       <rect x="1" y="1" width="18" height="28" rx="9"/>
       <line x1="10" y1="8" x2="10" y2="14"/>
     </svg>
@@ -1052,72 +345,44 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-text reveal">
+        <p class="label about-label">Our Story</p>
         <h2>Sourced with integrity,<br>delivered worldwide</h2>
         <p>
-          <span class="brand-name">Safi Meat</span> is a premium halal meat exporter based in Pakistan. We partner directly with trusted livestock suppliers to deliver beef and mutton that meet the highest standards of halal certification and food safety.
+          <span class="brand-name">Safi Meats</span> is a premium halal meat exporter based in Pakistan. We partner directly with trusted livestock suppliers to deliver beef and mutton that meet the highest standards of halal certification and food safety.
         </p>
         <p>
           From our procurement facilities in Pakistan to markets across the Middle East, Asia, and beyond. Every shipment carries our promise of quality, traceability, and care.
         </p>
       </div>
       <div class="about-visual reveal">
-        <!-- Elegant line-drawing cattle illustration -->
         <svg class="cattle-illustration" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-          <!-- Bull body outline - elegant, minimal -->
-          <!-- Back line -->
           <path d="M 100 120 Q 120 105 160 100 Q 200 96 240 100 Q 280 105 300 115"/>
-          <!-- Chest/belly -->
           <path d="M 100 120 Q 95 140 92 160 Q 90 175 100 185"/>
-          <!-- Front leg left -->
           <path d="M 100 185 Q 102 210 100 235 Q 99 245 105 248"/>
-          <!-- Front leg right -->
           <path d="M 120 180 Q 122 208 120 235 Q 119 245 125 248"/>
-          <!-- Belly line -->
           <path d="M 120 180 Q 170 190 220 188 Q 260 185 280 178"/>
-          <!-- Rear leg left -->
           <path d="M 280 178 Q 282 205 278 235 Q 277 245 283 248"/>
-          <!-- Rear leg right -->
           <path d="M 300 170 Q 305 200 302 235 Q 301 245 307 248"/>
-          <!-- Rump -->
           <path d="M 300 115 Q 315 125 318 145 Q 316 160 300 170"/>
-          <!-- Tail -->
           <path d="M 318 140 Q 335 130 345 145 Q 348 155 340 162"/>
-          <!-- Tail tuft -->
           <path d="M 340 162 Q 335 168 338 172"/>
-          <!-- Neck -->
           <path d="M 100 120 Q 85 115 75 105 Q 68 96 65 88"/>
-          <!-- Head -->
           <path d="M 65 88 Q 58 82 50 80 Q 42 80 38 85 Q 34 92 40 98 Q 48 103 58 100 Q 65 97 68 96"/>
-          <!-- Horn left -->
           <path d="M 52 80 Q 45 68 42 60"/>
-          <!-- Horn right -->
           <path d="M 62 82 Q 60 68 62 58"/>
-          <!-- Eye -->
-          <circle cx="50" cy="88" r="2" fill="currentColor" stroke="none" style="color: var(--clr-accent);"/>
-          <!-- Nostril -->
+          <circle cx="50" cy="88" r="2" fill="#B8924A" stroke="none"/>
           <path d="M 40 94 Q 38 96 40 97"/>
-          <!-- Ear -->
           <path d="M 58 78 Q 68 72 72 78"/>
-          <!-- Dewlap -->
           <path d="M 68 96 Q 72 110 80 118"/>
-          <!-- Muscle definition lines (subtle) -->
           <path d="M 130 110 Q 145 115 155 112" opacity="0.4"/>
           <path d="M 260 112 Q 275 118 285 115" opacity="0.4"/>
-          <!-- Shoulder line -->
           <path d="M 105 130 Q 110 150 108 170" opacity="0.4"/>
-          <!-- Hip line -->
           <path d="M 290 125 Q 295 145 292 165" opacity="0.4"/>
-
-          <!-- Hooves (small marks) -->
           <line x1="100" y1="248" x2="110" y2="248" opacity="0.5"/>
           <line x1="120" y1="248" x2="130" y2="248" opacity="0.5"/>
           <line x1="273" y1="248" x2="288" y2="248" opacity="0.5"/>
           <line x1="297" y1="248" x2="312" y2="248" opacity="0.5"/>
-
-          <!-- Ground shadow (subtle) -->
-          <ellipse cx="195" cy="254" rx="120" ry="4" fill="none" stroke="currentColor" style="color: var(--clr-accent);" stroke-width="0.5" opacity="0.2"/>
-
-          <!-- Second bull (background, smaller, lighter) -->
+          <ellipse cx="195" cy="254" rx="120" ry="4" fill="none" stroke="#B8924A" stroke-width="0.5" opacity="0.2"/>
           <g transform="translate(140, 30) scale(0.55)" opacity="0.3">
             <path d="M 100 120 Q 120 105 160 100 Q 200 96 240 100 Q 280 105 300 115"/>
             <path d="M 100 120 Q 95 140 92 160 Q 90 175 100 185"/>
@@ -1144,12 +409,12 @@
 <section class="pillars section-pad" id="pillars">
   <div class="container">
     <div class="pillars-header reveal">
-      <h2>Why <span class="brand-name">Safi Meat</span></h2>
+      <p class="label">What Sets Us Apart</p>
+      <h2>Why <span class="brand-name">Safi Meats</span></h2>
     </div>
     <div class="pillars-grid">
       <div class="pillar reveal">
         <div class="pillar-icon">
-          <!-- Halal / certification icon -->
           <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="24" cy="24" r="20"/>
             <path d="M 16 24 L 22 30 L 34 18"/>
@@ -1160,7 +425,6 @@
       </div>
       <div class="pillar reveal">
         <div class="pillar-icon">
-          <!-- Cold chain / quality icon -->
           <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
             <rect x="8" y="12" width="32" height="26" rx="2"/>
             <line x1="8" y1="22" x2="40" y2="22"/>
@@ -1174,7 +438,6 @@
       </div>
       <div class="pillar reveal">
         <div class="pillar-icon">
-          <!-- Global / network icon -->
           <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="24" cy="24" r="20"/>
             <ellipse cx="24" cy="24" rx="10" ry="20"/>
@@ -1196,70 +459,66 @@
 <section class="reach section-pad" id="reach">
   <div class="container">
     <div class="reveal">
+      <p class="label">Global Presence</p>
       <h2>From Pakistan to the world</h2>
       <p>Whether by road, sea, or air, we connect premium halal meat from Pakistan's finest sources to tables across continents.</p>
     </div>
     <div class="reach-map reveal">
       <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-        <!-- Simplified world context dots (faint) -->
-        <g fill="rgba(255,255,255,0.06)">
-          <!-- North America cluster -->
+        <!-- Simplified world context dots -->
+        <g fill="rgba(240,237,228,0.06)">
           <circle cx="80" cy="130" r="1.5"/><circle cx="95" cy="135" r="1.5"/>
           <circle cx="85" cy="145" r="1.5"/><circle cx="100" cy="150" r="1.5"/>
-          <!-- Europe cluster -->
           <circle cx="260" cy="100" r="1.5"/><circle cx="275" cy="95" r="1.5"/>
           <circle cx="265" cy="110" r="1.5"/><circle cx="280" cy="105" r="1.5"/>
           <circle cx="290" cy="98" r="1.5"/><circle cx="270" cy="120" r="1.5"/>
-          <!-- Africa -->
           <circle cx="280" cy="220" r="1.5"/><circle cx="290" cy="240" r="1.5"/>
           <circle cx="275" cy="260" r="1.5"/><circle cx="285" cy="280" r="1.5"/>
-          <!-- Central/East Asia -->
           <circle cx="500" cy="120" r="1.5"/><circle cx="520" cy="110" r="1.5"/>
           <circle cx="540" cy="125" r="1.5"/><circle cx="560" cy="115" r="1.5"/>
-          <!-- SE Asia -->
           <circle cx="530" cy="250" r="1.5"/><circle cx="545" cy="260" r="1.5"/>
           <circle cx="555" cy="255" r="1.5"/>
         </g>
 
-        <!-- Origin: Pakistan (centered at x=400) -->
+        <!-- Origin: Pakistan -->
         <circle class="origin-dot" cx="400" cy="180" r="6" opacity="0.9"/>
-        <circle cx="400" cy="180" r="12" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1">
+        <circle cx="400" cy="180" r="12" fill="none" stroke="rgba(240,237,228,0.2)" stroke-width="1">
           <animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.3;0.05;0.3" dur="3s" repeatCount="indefinite"/>
         </circle>
-        <text x="400" y="200" text-anchor="middle" class="dest-label" style="font-size: 11px; fill: rgba(255,255,255,0.7);">PAKISTAN</text>
+        <text x="400" y="200" text-anchor="middle" class="dest-label" style="font-size: 11px; fill: rgba(240,237,228,0.7);">PAKISTAN</text>
 
-        <!-- Arc: Pakistan → UAE (west-southwest, ~54°E 24°N) -->
+        <!-- Arc: Pakistan to UAE -->
         <path class="arc-path" d="M 400 180 Q 350 155 320 200" style="animation-delay: 0.3s;"/>
         <circle class="dest-dot" cx="320" cy="200" r="4" style="animation-delay: 2.2s;"/>
         <text x="320" y="217" text-anchor="middle" class="dest-label">UAE</text>
 
-        <!-- Arc: Pakistan → Saudi Arabia (further west, ~45°E 24°N) -->
+        <!-- Arc: Pakistan to Saudi Arabia -->
         <path class="arc-path" d="M 400 180 Q 320 165 280 210" style="animation-delay: 0.6s;"/>
         <circle class="dest-dot" cx="280" cy="210" r="4" style="animation-delay: 2.5s;"/>
         <text x="280" y="227" text-anchor="middle" class="dest-label">KSA</text>
 
-        <!-- Arc: Pakistan → China (northeast, ~105°E 35°N) -->
+        <!-- Arc: Pakistan to China -->
         <path class="arc-path" d="M 400 180 Q 470 110 540 130" style="animation-delay: 0.9s;"/>
         <circle class="dest-dot" cx="540" cy="130" r="4" style="animation-delay: 2.8s;"/>
         <text x="540" y="120" text-anchor="middle" class="dest-label">CHINA</text>
 
-        <!-- Arc: Pakistan → SE Asia (east-southeast, ~105°E 5°N) -->
+        <!-- Arc: Pakistan to SE Asia -->
         <path class="arc-path" d="M 400 180 Q 480 240 540 270" style="animation-delay: 1.2s;"/>
         <circle class="dest-dot" cx="540" cy="270" r="4" style="animation-delay: 3.1s;"/>
         <text x="540" y="287" text-anchor="middle" class="dest-label">SE ASIA</text>
 
-        <!-- Arc: Pakistan → Central Asia (north, ~65°E 42°N) -->
+        <!-- Arc: Pakistan to Central Asia -->
         <path class="arc-path" d="M 400 180 Q 370 110 380 80" style="animation-delay: 1.3s;"/>
         <circle class="dest-dot" cx="380" cy="80" r="4" style="animation-delay: 3.0s;"/>
         <text x="380" y="70" text-anchor="middle" class="dest-label">C. ASIA</text>
 
-        <!-- Arc: Pakistan → Europe (northwest, ~15°E 50°N) -->
+        <!-- Arc: Pakistan to Europe -->
         <path class="arc-path" d="M 400 180 Q 320 70 260 105" style="animation-delay: 1.5s;"/>
         <circle class="dest-dot" cx="260" cy="105" r="4" style="animation-delay: 3.4s;"/>
         <text x="260" y="95" text-anchor="middle" class="dest-label">EUROPE</text>
 
-        <!-- Define motion paths -->
+        <!-- Motion paths -->
         <defs>
           <path id="arc-uae" d="M 400 180 Q 350 155 320 200"/>
           <path id="arc-ksa" d="M 400 180 Q 320 165 280 210"/>
@@ -1269,28 +528,28 @@
           <path id="arc-eu" d="M 400 180 Q 320 70 260 105"/>
         </defs>
 
-        <!-- Animated particles along each arc -->
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <!-- Animated particles along arcs -->
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="3.5s" repeatCount="indefinite" begin="0s"><mpath href="#arc-uae"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.5s" repeatCount="indefinite" begin="0s"/>
         </circle>
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#arc-ksa"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.5s" repeatCount="indefinite" begin="0.8s"/>
         </circle>
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.6s"><mpath href="#arc-china"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.5s" repeatCount="indefinite" begin="1.6s"/>
         </circle>
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="3.5s" repeatCount="indefinite" begin="2.4s"><mpath href="#arc-sea"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3.5s" repeatCount="indefinite" begin="2.4s"/>
         </circle>
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="3s" repeatCount="indefinite" begin="2s"><mpath href="#arc-casia"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="3s" repeatCount="indefinite" begin="2s"/>
         </circle>
-        <circle r="2" fill="var(--clr-accent-light)" opacity="0">
+        <circle r="2" fill="#C9A55E" opacity="0">
           <animateMotion dur="4s" repeatCount="indefinite" begin="1.2s"><mpath href="#arc-eu"/></animateMotion>
           <animate attributeName="opacity" values="0;0.7;0.7;0" dur="4s" repeatCount="indefinite" begin="1.2s"/>
         </circle>
@@ -1301,19 +560,16 @@
 
 <!-- ========================================
      CONTACT
-     ==========================================
-     *** EASY UPDATE: Change email, phone,
-         and address values below ***
      ======================================== -->
 <section class="contact section-pad" id="contact">
   <div class="container">
     <div class="contact-inner reveal">
-      <h2>Get in touch</h2>
+      <p class="label">Get In Touch</p>
+      <h2>Start a conversation</h2>
       <p>Ready to discuss supply partnerships or place an order? We'd welcome the conversation.</p>
     </div>
     <div class="contact-grid reveal">
 
-      <!-- ===== EMAIL — Update here ===== -->
       <div class="contact-item">
         <div class="contact-item-icon">
           <svg viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round">
@@ -1322,10 +578,9 @@
           </svg>
         </div>
         <h4>Email</h4>
-        <a href="mailto:info@safimeat.com">info@safimeat.com</a>
+        <a href="mailto:info@safimeats.com">info@safimeats.com</a>
       </div>
 
-      <!-- ===== PHONE — Update here ===== -->
       <div class="contact-item">
         <div class="contact-item-icon">
           <svg viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round">
@@ -1336,7 +591,6 @@
         <a href="tel:+923001234567">+92 300 123 4567</a>
       </div>
 
-      <!-- ===== ADDRESS — Update here ===== -->
       <div class="contact-item">
         <div class="contact-item-icon">
           <svg viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round">
@@ -1357,46 +611,41 @@
      ======================================== -->
 <footer>
   <div class="container">
-    <p>&copy; 2026 <strong class="brand-name">Safi Meat</strong>. All rights reserved.</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#pillars">Why Safi Meats</a>
+        <a href="#reach">Global Reach</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <p>Beef</p>
+        <p>Mutton</p>
+        <p>Offal</p>
+      </div>
+      <div class="footer-col">
+        <h4>Markets</h4>
+        <p>Middle East</p>
+        <p>Central Asia</p>
+        <p>Southeast Asia</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:info@safimeats.com">info@safimeats.com</a>
+        <a href="tel:+923001234567">+92 300 123 4567</a>
+        <p>Karachi, Pakistan</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong class="brand-name">Safi Meats</strong>. All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
-<!-- ========================================
-     SCRIPTS — Scroll reveal + header shadow
-     ======================================== -->
-<script>
-  // Header scroll shadow
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
-
-  // Intersection Observer for reveal animations
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-  reveals.forEach(el => observer.observe(el));
-
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Close mobile nav if open
-        document.querySelector('.nav-links').classList.remove('open');
-      }
-    });
-  });
-</script>
+<!-- Scripts -->
+<script src="js/main.js"></script>
+<script src="js/navigation.js"></script>
 
 </body>
 </html>
