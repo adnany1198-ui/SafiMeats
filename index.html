@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Safi Meat | Premium Halal Meat Exports</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Splash screen styles -->
+<link rel="stylesheet" href="css/splash.css">
+
 <style>
   /* ========================================
      DESIGN TOKENS
@@ -694,6 +703,32 @@
 </style>
 </head>
 <body>
+
+<!-- ========================================
+     SPLASH SCREEN
+     ======================================== -->
+<div class="splash" id="splash">
+  <div class="splash-corner corner-tl"></div>
+  <div class="splash-corner corner-tr"></div>
+  <div class="splash-corner corner-bl"></div>
+  <div class="splash-corner corner-br"></div>
+  <div class="splash-content">
+    <div class="splash-topline">Premium Halal Meat Export</div>
+    <div class="splash-arabic">الصافي</div>
+    <div class="splash-english">SAFI</div>
+    <div class="splash-divider"></div>
+    <div class="splash-sub">Meats</div>
+    <div class="splash-slogan">Consistency is our currency of credibility.</div>
+  </div>
+  <div class="splash-position">
+    <span>Pakistan &rarr; Global Markets</span>
+  </div>
+</div>
+
+<!-- ========================================
+     PAGE CONTENT (hidden until splash dismisses)
+     ======================================== -->
+<div id="page-content" class="page-content">
 
 <!-- ========================================
      HEADER
@@ -1397,6 +1432,11 @@
     });
   });
 </script>
+
+</div><!-- /#page-content -->
+
+<!-- Splash screen logic -->
+<script src="js/splash.js"></script>
 
 </body>
 </html>

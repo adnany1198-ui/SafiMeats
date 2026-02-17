@@ -1,0 +1,230 @@
+/* ========================================
+   SPLASH SCREEN — index.html only
+   Full-viewport intro overlay.
+   Auto-dismisses after 4s or on click/tap.
+   ======================================== */
+
+/* ---- Overlay ---- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--clr-navy);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Subtle radial gold glow in centre */
+.splash::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(ellipse at 50% 50%, var(--clr-accent-light) 0%, transparent 65%);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Grain texture overlay */
+.splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* Dismiss transition */
+.splash.dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Decorative corner lines (L-shaped, 60px, 1px gold) ---- */
+.splash-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  opacity: 0;
+  animation: splash-corner-in 0.6s ease-out 1.8s forwards;
+}
+
+.corner-tl {
+  top: 2.5rem;
+  left: 2.5rem;
+  border-top: 1px solid var(--clr-accent);
+  border-left: 1px solid var(--clr-accent);
+}
+
+.corner-tr {
+  top: 2.5rem;
+  right: 2.5rem;
+  border-top: 1px solid var(--clr-accent);
+  border-right: 1px solid var(--clr-accent);
+}
+
+.corner-bl {
+  bottom: 2.5rem;
+  left: 2.5rem;
+  border-bottom: 1px solid var(--clr-accent);
+  border-left: 1px solid var(--clr-accent);
+}
+
+.corner-br {
+  bottom: 2.5rem;
+  right: 2.5rem;
+  border-bottom: 1px solid var(--clr-accent);
+  border-right: 1px solid var(--clr-accent);
+}
+
+@keyframes splash-corner-in {
+  from { opacity: 0; }
+  to   { opacity: 0.4; }
+}
+
+/* ---- Content container ---- */
+.splash-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 1. "Premium Halal Meat Export" label — 0.3s */
+.splash-topline {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splash-fade-up 0.8s ease-out 0.3s forwards;
+}
+
+/* 2. Arabic الصافي — 0.6s */
+.splash-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--clr-cream);
+  direction: rtl;
+  line-height: 1.2;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splash-fade-up 0.8s ease-out 0.6s forwards;
+}
+
+/* 3. "SAFI" — 1.0s */
+.splash-english {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--clr-accent);
+  margin-top: 0.25rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splash-fade-up 0.8s ease-out 1.0s forwards;
+}
+
+/* 4. Divider — 1.2s */
+.splash-divider {
+  width: 0;
+  height: 1px;
+  background: var(--clr-accent);
+  margin: 1.5rem 0;
+  opacity: 0;
+  animation: splash-divider-expand 0.6s ease-out 1.2s forwards;
+}
+
+@keyframes splash-divider-expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 80px; opacity: 0.6; }
+}
+
+/* 5. "Meats" — 1.4s */
+.splash-sub {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.3);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splash-fade-up 0.6s ease-out 1.4s forwards;
+}
+
+/* 6. Slogan — 1.8s */
+.splash-slogan {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: rgba(245, 240, 232, 0.45);
+  margin-top: 1.5rem;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splash-fade-up 0.8s ease-out 1.8s forwards;
+}
+
+/* 8. "Pakistan → Global Markets" — 2.2s */
+.splash-position {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.splash-position span {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.25);
+  opacity: 0;
+  transform: translateY(8px);
+  display: inline-block;
+  animation: splash-fade-up 0.6s ease-out 2.2s forwards;
+}
+
+/* Shared fade-up keyframe */
+@keyframes splash-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Page content wrapper (hidden until splash dismisses) ---- */
+.page-content {
+  opacity: 0;
+  transition: opacity 0.8s ease 0.3s;
+}
+
+.page-content.visible {
+  opacity: 1;
+}
+
+/* ---- Hide corners on mobile ---- */
+@media (max-width: 600px) {
+  .splash-corner {
+    display: none;
+  }
+}
