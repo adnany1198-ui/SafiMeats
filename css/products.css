@@ -1,0 +1,118 @@
+/* ========================================
+   PRODUCTS PAGE STYLES
+   ======================================== */
+
+/* ---- Product category sections ---- */
+
+.product-section {
+  position: relative;
+}
+
+.product-section:nth-child(odd) {
+  background: var(--white);
+}
+
+.product-section:nth-child(even) {
+  background: var(--section-alt);
+}
+
+.product-section .two-col-content .label {
+  color: var(--accent);
+}
+
+.product-section .two-col-content h2 {
+  margin-bottom: 1.25rem;
+}
+
+.product-section .two-col-content p {
+  margin-bottom: 1rem;
+  max-width: 480px;
+}
+
+/* ---- Cut list ---- */
+
+.cut-list {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+.cut-list li {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cut-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* ---- Packaging section ---- */
+
+.packaging-section {
+  background: var(--section-alt);
+}
+
+.packaging-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.packaging-item {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+}
+
+.packaging-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+}
+
+.packaging-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.packaging-item h3 {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  margin-bottom: 0.5rem;
+}
+
+.packaging-item p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+  .cut-list {
+    grid-template-columns: 1fr;
+  }
+
+  .packaging-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

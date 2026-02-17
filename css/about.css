@@ -1,0 +1,150 @@
+/* ========================================
+   ABOUT PAGE STYLES
+   ======================================== */
+
+/* ---- Story section ---- */
+
+.story-section {
+  background: var(--white);
+}
+
+.story-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+.story-content p {
+  margin-bottom: 1rem;
+  max-width: 540px;
+}
+
+.story-content .quote-text {
+  color: var(--text);
+  margin-top: 2rem;
+  max-width: 540px;
+}
+
+/* ---- Mission section ---- */
+
+.mission-section {
+  background: var(--section-alt);
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.mission-item {
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.mission-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+}
+
+.mission-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.mission-item h3 {
+  margin-bottom: 0.6rem;
+}
+
+.mission-item p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ---- Stats section ---- */
+
+.stats-section {
+  background: var(--primary);
+  color: var(--cream);
+}
+
+/* ---- Leadership section ---- */
+
+.leadership-section {
+  background: var(--white);
+}
+
+.leadership-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.leader-card {
+  text-align: center;
+}
+
+.leader-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leader-photo svg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.4;
+}
+
+.leader-card h3 {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  margin-bottom: 0.3rem;
+}
+
+.leader-card .leader-role {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.leader-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .leadership-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
